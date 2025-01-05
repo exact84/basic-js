@@ -22,31 +22,31 @@ function transform(arr) {
 
   for (let i = 0; i < arr.length; i += 1) {
     if (arr[i] === "--discard-next") {
-      if (i === arr.length - 1 || isNaN(arr[i + 1])) break;
+      if (i === arr.length - 1 || isNaN(arr[i + 1])) continue;
       i += 1;
-      discarded = false;
-      break;
+      discarded = true;
+      continue;
     }
     if (arr[i] === "--discard-prev") {
-      if (i === 0 || isNaN(arr[i - 1]) || discarded) break;
+      if (i === 0 || isNaN(arr[i - 1]) || discarded) continue;
       result[j - 1] = undefined;
       j -= 1;
-      discarded = true;
-      break;
+      discarded = false;
+      continue;
     }
     if (arr[i] === "--double-next") {
-      if (i === arr.length - 1 || isNaN(arr[i + 1])) break;
+      if (i === arr.length - 1 || isNaN(arr[i + 1])) continue;
       result[j] = arr[i + 1];
       j += 1;
       discarded = false;
-      break;
+      continue;
     }
     if (arr[i] === "--double-prev") {
-      if (i === 0 || isNaN(arr[i - 1]) || discarded) break;
+      if (i === 0 || isNaN(arr[i - 1]) || discarded) continue;
       result[j] = arr[i - 1];
       j += 1;
       discarded = false;
-      break;
+      continue;
     }
     result[j] = arr[i];
     j += 1;
